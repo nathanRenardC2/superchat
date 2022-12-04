@@ -73,6 +73,9 @@ function SignOut() {
 }
 
 function ChatRoom(){
+
+  const scrollToThis = React.useRef();
+
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
@@ -93,12 +96,18 @@ function ChatRoom(){
     });
 
     setFormValue('');
+
+    scrollToThis.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   return(
     <>
-      <div className='mt-24'>
+      <div className='mt-24 mb-24'>
         {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+
+      <div ref={scrollToThis}></div>
+
+
       </div>
 
       <form onSubmit={sendMessage} className="fixed bottom-0 left-0 right-0 flex items-center bg-teal-300 h-20">   
