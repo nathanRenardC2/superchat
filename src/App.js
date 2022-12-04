@@ -145,7 +145,7 @@ function ChatMessage(props){
         <p className='text-center text-gray-400 mt-5'>{day + " à " + time}</p>
         <div className={`message ${messageClass} px-10`}>
           <img className='rounded-full h-14 w-14' src={photoURL} alt="image_profil_send" />
-          <p className="w-80 ml-3 flex items-center">{text}</p>
+          <p className="w-80 ml-3 flex items-center pl-8">{text}</p>
         </div>
     </div>
   )
