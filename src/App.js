@@ -120,14 +120,20 @@ function ChatRoom(){
 }
 
 function ChatMessage(props){
-  const {text, uid, photoURL,createdAt} = props.message;
+  const {text, uid, photoURL, createdAt} = props.message;
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+
+  // Format the createdAt timestamp
+  const date = createdAt && createdAt.toDate();
+  const time = date && date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  const day = date && date.toLocaleDateString();
+
 
   return (
 
     <div>
-        <p className='text-center'>{createdAt}</p>
+        <p className='text-center text-gray-400 mt-5'>{day + " à " + time}</p>
         <div className={`message ${messageClass} px-10`}>
           <img className='rounded-full h-14 w-14' src={photoURL} alt="image_profil_send" />
           <p className="w-80 ml-3 flex items-center">{text}</p>
