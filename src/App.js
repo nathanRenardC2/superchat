@@ -120,14 +120,18 @@ function ChatRoom(){
 }
 
 function ChatMessage(props){
-  const {text, uid, photoURL} = props.message;
+  const {text, uid, photoURL,createdAt} = props.message;
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (
-    <div className={`message ${messageClass} px-10`}>
-      <img className='rounded-full h-14 w-14' src={photoURL} alt="image_profil_send" />
-      <p className="w-80 ml-3 flex items-center">{text}</p>
+
+    <div>
+        <p className='text-center'>{createdAt}</p>
+        <div className={`message ${messageClass} px-10`}>
+          <img className='rounded-full h-14 w-14' src={photoURL} alt="image_profil_send" />
+          <p className="w-80 ml-3 flex items-center">{text}</p>
+        </div>
     </div>
   )
 }
